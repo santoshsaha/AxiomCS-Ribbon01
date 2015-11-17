@@ -1,0 +1,166 @@
+{
+    "SForceObjects": [
+        {
+            "Name": "Request__c",
+            "Tabs": [
+                {
+                    "SubObject": "Matter__c",
+                    "ParentRelationName": "Request__c"
+                }
+            ],
+            "Columns": [
+                "Request_Number__c",
+                "Name",
+                "Geography__c",
+                "Number_of_Matters__c",
+                "Stage__c",
+                "Status__c",
+                "Step__c",
+                "CreatedDate",
+                "Owner_Name"
+            ],
+            "Compact": [
+                "Request_Number__c",
+                "Name",
+                "Geography__c",
+                "Number_of_Matters__c",
+                "Stage__c",
+                "Status__c",
+                "Step__c",
+                "CreatedDate",
+                "Owner_Name"
+            ],
+            "Buttons": [
+                {
+                    "Name": "Accept",
+                    "Type": "Data",
+                    "Action": "Accept"
+                },
+                {
+                    "Name": "Reject",
+                    "Type": "Data",
+                    "Action": "Reject"
+                }
+            ]
+        },
+
+        {
+            "Name": "Matter__c",
+            "Tabs": [
+                {
+                    "SubObject": "Task",
+                    "ParentRelationName": "What"
+                },
+                {
+                    "SubObject": "Version__c",
+                    "ParentRelationName": "Matter__c"
+                },
+                {
+                    "SubObject": "Attachment",
+                    "ParentRelationName": ""
+                }
+            ],
+            "Columns": [
+                "Matter_Number__c",
+                "Name",
+                "CreatedDate",
+                "LastModifiedDate",
+                "Owner_Name",
+                "CreatedBy_Name",
+                "LastModifiedBy_Name"
+            ],
+            "Compact": [
+                "Name",
+                "Matter_Number__c",
+                "Owner_Name",
+                "Status__c",
+                "Stage__c",
+                "Step__c",
+                "Request__c"
+            ],
+            "Buttons": [
+                {
+                    "Name": "AddButton",
+                    "Type": "Add",
+                    "Call": "AxiomController.AddButton"
+                },
+                {
+                    "Name": "DataButton1",
+                    "Type": "Data",
+                    "Call": "AxiomController.DataButton1"
+                },
+                {
+                    "Name": "DataButton2",
+                    "Type": "Data",
+                    "Call": "AxiomController.DataButton2"
+                }
+            ]
+        },
+
+        {
+            "Name": "Account",
+            "Tabs": [
+                {
+                    "SubObject": "Contact",
+                    "ParentRelationName": "Account"
+                },
+                {
+                    "SubObject": "Legal_Entity__c",
+                    "ParentRelationName": "Company__c"
+                }
+            ]
+        },
+
+        {
+            "Name": "Version__c",
+            "Tabs": [
+                {
+                    "SubObject": "Attachment",
+                    "ParentRelationName": ""
+                }
+            ],
+            "Columns": [
+                "Name",
+                "Status__c",
+                "Version_Number__c",
+                "LastModifiedDate",
+                "LastModifiedBy_Name"
+            ],
+            "Compact": "All"
+        },
+
+        {
+            "Name": "Contact",
+            "Columns": [
+                "FirstName",
+                "LastName"
+            ]
+        },
+
+        {
+            "Name": "Task",
+            "Columns": [
+                "Subject",
+                "Owner_Name",
+                "ActivityDate",
+                "LastModifiedDate"
+            ]
+        },
+
+        {
+            "Name": "Legal_Entity__c"
+        },
+
+        {
+            "Name": "Attachment",
+            "Columns": [
+                "Name",
+                "Owner_Name",
+                "LastModifiedDate",
+                "LastModifiedBy_Name"
+            ]
+        }
+
+
+    ]
+}

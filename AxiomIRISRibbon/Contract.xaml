@@ -1,0 +1,86 @@
+﻿<Window x:Class="AxiomIRISRibbon.Contract"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="400" d:DesignWidth="400" ResizeMode="NoResize" ShowInTaskbar="True" WindowStartupLocation="CenterScreen"  Title="Contract" WindowStyle="ToolWindow" Width="739" Height="380" Icon="/AxiomIRISRibbon;component/Resources/Iris-Logo-Solo-Orange-40.png" Closing="Window_Closing">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200*"/>
+            <ColumnDefinition Width="247*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="306*" />
+            <RowDefinition Height="45*" />
+        </Grid.RowDefinitions>
+
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="267*" />
+            </Grid.RowDefinitions>
+
+            <Label Content="Search:" Height="28" HorizontalAlignment="Left" Margin="6,6,0,0" VerticalAlignment="Top" />
+            <TextBox Tag="ignore" Height="23" Margin="60,6,44,0" Name="tbContractSearch" VerticalAlignment="Top" />
+
+            <DataGrid Margin="5,40,5,5" Name="dgContracts" HorizontalGridLinesBrush="Silver" VerticalGridLinesBrush="Silver" AutoGenerateColumns="false" IsReadOnly="True"  SelectionMode="Single" AllowDrop="False"  VerticalAlignment="Stretch" SelectionChanged="dgContracts_SelectionChanged">
+                <DataGrid.RowStyle>
+                    <Style TargetType="{x:Type DataGridRow}">
+                        <EventSetter Event="MouseDoubleClick" Handler="ClauseRowDoubleClick"/>
+                    </Style>
+                </DataGrid.RowStyle>
+                <DataGrid.Columns>
+                    
+                    <DataGridTextColumn Binding="{Binding Path=Template__r_Name}" Header="Template" IsReadOnly="True" />                    
+                    <DataGridTextColumn Binding="{Binding Path=Name}" Header="Name" Width="*" IsReadOnly="True" />
+                </DataGrid.Columns>
+            </DataGrid>
+            <Button HorizontalAlignment="Left" Margin="288,6,0,0" Width="22"  Height="23" VerticalAlignment="Top" Name="btnReload" Click="btnReload_Click">
+                <Image Source="Resources/refresh.png" Stretch="None" />
+            </Button>
+        </Grid>
+
+        <TabControl Margin="5,5,5,5" Grid.Column="2" Name="tcTab" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  TabStripPlacement="Top" VerticalAlignment="Stretch">
+            <TabItem Header="Contract" Name="tabItem1">
+                <Grid Name="formGrid1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="267*" />
+                        <RowDefinition Height="50*" />
+                    </Grid.RowDefinitions>
+                    <Label Content="Name:" Height="28" HorizontalAlignment="Left" Margin="6,6,0,0" Name="label1" VerticalAlignment="Top" />
+                    <TextBox Height="23" Margin="70,9,6,0" Name="tbName" VerticalAlignment="Top" Width="Auto" TextChanged="formTextBoxChanged" />
+                    <Label Content="Template:" Height="38" HorizontalAlignment="Left" Margin="6,36,0,0" Name="label2" VerticalAlignment="Top" />
+                    <TextBox Height="23" Margin="70,37,6,0" Name="tbTemplate" Tag="Template__r_Name" VerticalAlignment="Top" Width="Auto" IsReadOnly="True" />
+
+                    <ScrollViewer Margin="0,66,0,0">
+                        <TextBox AcceptsReturn="True" Name="tbDescription" TextChanged="formTextBoxChanged" VerticalContentAlignment="Top"/>
+                    </ScrollViewer>
+                    <Button Grid.Row="1" Content="Save" Height="23" HorizontalAlignment="Left"  Name="btnSave" VerticalAlignment="Top" Width="75" Click="btnSave_Click" Margin="214,11,0,0" />
+                    <Button Grid.Row="1" Content="Cancel" Height="23" Name="btnCancel" VerticalAlignment="Top" HorizontalAlignment="Right" Width="75" Click="btnCancel_Click" Margin="0,11,6,0" />
+                    
+                </Grid>
+            </TabItem>
+            <TabItem Header="Hidden" Name="tbHidden">
+                <Grid Name="formGrid2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="267*" />
+                    </Grid.RowDefinitions>
+                    <TextBox Height="23" Margin="5,5,5,5" Name="tbId" VerticalAlignment="Top" Width="Auto" />
+                    <TextBox Height="23" Margin="5,30,5,5" Name="tbTemplate__c" VerticalAlignment="Top" Width="Auto" />
+                    <TextBox Height="23" Margin="5,55,5,5" Name="tbTemplate__r_Name" VerticalAlignment="Top" Width="Auto" />
+                    <TextBox Height="23" Margin="5,80,5,5" Name="tbTemplate__r_PlaybookLink__c" VerticalAlignment="Top" Width="Auto" />
+                    <ScrollViewer Margin="0,84,0,0">
+                        <TextBlock Tag="ignore" Name="tbXML" Text="TextBlock" DataContext="{Binding}" Background="Gainsboro" Margin="0" TextWrapping="WrapWithOverflow" Height="159"></TextBlock>
+                    </ScrollViewer>
+
+                </Grid>
+            </TabItem>
+
+        </TabControl>
+        <Button Content="Add" Grid.Row="1" Height="23" HorizontalAlignment="Left" Margin="6,7,0,0" Name="btnAdd" VerticalAlignment="Top" Width="75" Click="btnAdd_Click" Visibility="Hidden" />
+        <Button Content="Delete" Grid.Row="1" Height="23" HorizontalAlignment="Left" Margin="6,7,0,0" Name="btnDelete" VerticalAlignment="Top" Width="75" Click="btnDelete_Click" />
+        <Button Content="Open" HorizontalAlignment="Left" Margin="235,7,0,14" Name="btnOpen" Width="75" Grid.Column="1" Grid.Row="1" Click="btnOpen_Click" />
+        <Button Content="Close" Height="23" HorizontalAlignment="Right" Margin="0,8,5,0" Name="btnClose" VerticalAlignment="Top" Width="75" Grid.Column="1" Grid.Row="1" Click="btnClose_Click" />
+    </Grid>
+</Window>

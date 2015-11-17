@@ -1,0 +1,48 @@
+﻿<telerik:RadWindow x:Class="AxiomIRISRibbon.Login"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             xmlns:local="clr-namespace:AxiomIRISRibbon"
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize" d:DesignHeight="300" d:DesignWidth="580" Header="Axiom IRIS" Name="windowLogin">
+    <Grid Height="260" Width="570">
+
+
+        <Image Height="210" HorizontalAlignment="Left" Margin="17,6,0,0" Name="image1" Stretch="None"  VerticalAlignment="Top" Width="210" Source="/AxiomIRISRibbon;component/Resources/Iris-Logo-Primary-Orange-200.png" />
+
+        <Button Content="OK" Height="23" HorizontalAlignment="Left" Margin="397,225,0,0" Name="btnOK" VerticalAlignment="Top" Width="75" Click="btnOK_Click" />
+        <Button Content="Cancel" Height="23" HorizontalAlignment="Left" Margin="478,225,0,0" Name="btnCancel" VerticalAlignment="Top" Width="75" Click="btnCancel_Click" />
+
+        <telerik:GroupBox Header="Login" Height="210" HorizontalAlignment="Left" Margin="229,6,6,0" Name="groupBox1" VerticalAlignment="Top" Width="325">
+            <telerik:RadBusyIndicator Grid.Row="1" IsBusy="{Binding IsBusy}" IsIndeterminate="True" BusyContent="Logging In" Name="bsyInd">
+                <Grid Height="190">
+                    <TextBox HorizontalAlignment="Left" Margin="104,36,0,0" Name="tbUserName"  VerticalAlignment="Top"  Width="200"/>
+                    <PasswordBox Padding="3,0,0,0" Height="23" HorizontalAlignment="Left" Margin="104,64,0,0" Name="tbPassword"  VerticalAlignment="Top" Width="200" />
+                    <Label Content="Username:" Height="28" HorizontalAlignment="Left" Margin="30,33,0,0" Name="label1" VerticalAlignment="Top" />
+                    <Label Content="Password:" Height="28" HorizontalAlignment="Left" Margin="35,64,0,0" Name="label2" VerticalAlignment="Top" />
+                    <TextBox Height="23" HorizontalAlignment="Left" Margin="104,92,0,0" Name="tbToken"  VerticalAlignment="Top" Width="200" />
+                    <Label Content="Token:" Height="28" HorizontalAlignment="Left" Margin="51,92,0,0" Name="label3" VerticalAlignment="Top" />
+                    <TextBlock Height="35" HorizontalAlignment="Left" Margin="6,0,0,6" Name="lblLoginMessage" VerticalAlignment="Bottom" Width="298" Foreground="OrangeRed" TextWrapping="Wrap" />
+                    <telerik:RadComboBox Height="16" Margin="104,8,0,0" Name="radComboDemoLogins" VerticalAlignment="Top" HorizontalAlignment="Left" Width="183" SelectionChanged="radComboDemoLogins_SelectionChanged">
+                        <telerik:RadComboBoxItem Content="Dev" />
+                        <telerik:RadComboBoxItem Content="ISDA-Direct" />
+                        <telerik:RadComboBoxItem Content="ISDA-CypherCloud" />
+                        <telerik:RadComboBoxItem Content="BT-Dev" />                                             
+                    </telerik:RadComboBox>
+                    <Label Content="Demo Logins:" Height="28" HorizontalAlignment="Left" Margin="16,6,0,0" Name="lblDemoLogins" VerticalAlignment="Top" />
+                    <TextBox Height="23" HorizontalAlignment="Left" Margin="104,120,0,0" Name="tbEndPoint"  VerticalAlignment="Top" Width="200" />
+                    <Label Content="Url:" Height="28" HorizontalAlignment="Right" Margin="0,120,217,0" Name="label6" VerticalAlignment="Top" ToolTip="Leave blank for default Salesforce, set to test.salesforce.com for Sandbox" />
+                    <Button Content=">" Height="22" HorizontalAlignment="Left" Margin="291,8,0,0" Name="btnDemoLogins" VerticalAlignment="Top" Width="13" Click="button1_Click_1" />
+                </Grid>
+            </telerik:RadBusyIndicator>
+        </telerik:GroupBox>
+        <CheckBox Content="Local Database" Height="16" HorizontalAlignment="Left" Margin="188,229,0,0" Name="cbLocal" VerticalAlignment="Top" />
+        <telerik:RadComboBox Name="themepick1" Margin="72,226,0,0" Height="16" Width="98" VerticalAlignment="Top" HorizontalAlignment="Left" SelectionChanged="RadComboBox_SelectionChanged">
+            <telerik:RadComboBoxItem>Windows8</telerik:RadComboBoxItem>
+            <telerik:RadComboBoxItem>Dark</telerik:RadComboBoxItem>
+            <telerik:RadComboBoxItem>Office</telerik:RadComboBoxItem>
+        </telerik:RadComboBox>
+        <Label Content="Theme:" Height="28" HorizontalAlignment="Left" Margin="17,224,0,0" Name="label4" VerticalAlignment="Top" />
+    </Grid>
+</telerik:RadWindow>

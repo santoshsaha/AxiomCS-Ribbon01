@@ -1,0 +1,69 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="AxiomIRISRibbon.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="ShowAllLogins" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="DevUrl" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://dev-CS--IRIS----RKSB1-CS17-my-salesforce-com.iris-dev.rowini.net:29443</Value>
+    </Setting>
+    <Setting Name="DevOrgId" Type="System.String" Scope="User">
+      <Value Profile="(Default)">00Dg0000003Nc8C</Value>
+    </Setting>
+    <Setting Name="Debug" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="Inst" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Prod</Value>
+    </Setting>
+    <Setting Name="ITUrl" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://it-CS--IRIS----QA1SB-CS17-my-salesforce-com.iris-it.rowini.net:29443</Value>
+    </Setting>
+    <Setting Name="ITOrgId" Type="System.String" Scope="User">
+      <Value Profile="(Default)">00Dg0000003NdAc</Value>
+    </Setting>
+    <Setting Name="UATUrl" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://uat-cs--iris----csuat-cs17-my-salesforce-com.iris-uat.csintra.net</Value>
+    </Setting>
+    <Setting Name="UATOrgId" Type="System.String" Scope="User">
+      <Value Profile="(Default)">00Dg0000003Nc8e</Value>
+    </Setting>
+    <Setting Name="ProdUrl" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://prod-cs--iris-my-salesforce-com.iris.csintra.net</Value>
+    </Setting>
+    <Setting Name="ProdOrgId" Type="System.String" Scope="User">
+      <Value Profile="(Default)">00Dj0000000Hojv</Value>
+    </Setting>
+    <Setting Name="SoapVersion" Type="System.String" Scope="User">
+      <Value Profile="(Default)">29.0</Value>
+    </Setting>
+    <Setting Name="SSOLogin" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="Theme" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Windows8</Value>
+    </Setting>
+    <Setting Name="ThemeColor" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#003565</Value>
+    </Setting>
+    <Setting Name="ReportsDevUrl" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://CHWD2500274.ch.ad.hedani.net:29080/irisreports/SSOLogin.aspx</Value>
+    </Setting>
+    <Setting Name="ReportsITUrl" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://CHWT2500276.ch.ad.hedani.net:29080/irisreports/SSOLogin.aspx</Value>
+    </Setting>
+    <Setting Name="ReportsUATUrl" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://iris-an-uat.csintra.net/IRISReports/SSOLogin.aspx</Value>
+    </Setting>
+    <Setting Name="ReportsProdUrl" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://iris-an.csintra.net/IRISReports/SSOLogin.aspx</Value>
+    </Setting>
+    <Setting Name="AxiomIRISRibbon_sfRibbon_Axiom_RibbonControllerService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://cs17.salesforce.com/services/Soap/class/Axiom_RibbonController</Value>
+    </Setting>
+    <Setting Name="AxiomIRISRibbon_sfPartner_SforceService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://login.salesforce.com/services/Soap/u/31.0</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

@@ -1,0 +1,24 @@
+﻿<telerik:RadWindow x:Class="AxiomIRISRibbon.TemplateEdit.CloneTemplate"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             WindowStartupLocation="CenterScreen" ResizeMode="NoResize" d:DesignWidth="400" Header="Axiom IRIS - Clone Template" Name="windowNewFromTemplate" Height="300" Width="400">
+
+    <Grid Margin="0,0,0,0">
+
+        <RadioButton Name="Clone1" GroupName="Clone" VerticalAlignment="Top" Height ="23" Margin="26,84,-16,0" Checked="Clone1_Checked">Clone keeping same Concepts/Clauses/Elements</RadioButton>
+        <RadioButton Name="Clone2" GroupName="Clone" VerticalAlignment="Top"  Height ="23"  Margin="26,114,-16,0" Checked="Clone2_Checked">Clone and Clone Concepts/Clauses, keep same Elements</RadioButton>
+
+        <Label Content="Prepend Names Of Cloned Items With:" HorizontalAlignment="Left" Margin="38,134,0,0" VerticalAlignment="Top" Width="276"/>
+        <TextBox Name="txtPrepend" VerticalAlignment="Top"  Height ="23"  Margin="256,137,0,0" Width="88" HorizontalAlignment="Left" MaxLength="20"></TextBox>
+
+        <telerik:RadButton Name="btnClone" Content="Clone" HorizontalAlignment="Left" Margin="211,226,0,0" VerticalAlignment="Top" Width="75" Click="btnCreate_Click"/>
+        <telerik:RadButton Name="btnCancel" Content="Cancel" HorizontalAlignment="Left" Margin="295,226,0,0" VerticalAlignment="Top" Width="75" Click="btnCancel_Click"/>
+        <TextBox Name="tbCloneName" MaxLength="80" VerticalAlignment="Top"  Height ="23"  Margin="88,35,0,0" Width="256" HorizontalAlignment="Left"/>
+        <Label Content="New Name:" HorizontalAlignment="Left" Margin="10,32,0,0" VerticalAlignment="Top" Width="73"/>
+
+    </Grid>
+</telerik:RadWindow>

@@ -1,0 +1,21 @@
+﻿<telerik:RadWindow  x:Class="AxiomIRISRibbon.About"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+            WindowStartupLocation="CenterScreen" ResizeMode="NoResize" d:DesignHeight="400" d:DesignWidth="400" Header="Axiom IRIS" Name="windowAbout" Height="400" Width="400" Activated="windowAbout_Activated">
+    <Grid Height="400" Width="400">
+        <Image Height="210" HorizontalAlignment="Left" Margin="89,20,0,0" x:Name="image1" Stretch="None"  VerticalAlignment="Top" Width="210" Source="Resources/Iris-Logo-Primary-Orange-200.png" />
+        <TextBlock HorizontalAlignment="Center" Name="tbVersion" Margin="10,236,28,128">Version Info</TextBlock>
+        <TextBlock HorizontalAlignment="Center" Name="tbSF" Margin="10,266,28,8" TextWrapping="Wrap">Logged into</TextBlock>
+        <TextBlock HorizontalAlignment="Center" Name="tbUser" Margin="10,286,28,8" TextWrapping="Wrap">User</TextBlock>
+        <Button Content="OK" Height="23" HorizontalAlignment="Left" Margin="157,320,0,0" x:Name="btnOK" VerticalAlignment="Top" Width="75" Click="btnOK_Click"/>
+        <TextBlock Margin="10,324,293,41">           
+            <Hyperlink Click="Hyperlink_Click">
+                Release Notes
+            </Hyperlink>
+        </TextBlock>
+
+    </Grid>
+</telerik:RadWindow>

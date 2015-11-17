@@ -1,0 +1,200 @@
+﻿
+*1.1.29*
+14 October 2015
+- bug! Attaching a non-tempalte document to a version and then reopening could delete the original file.  Fix.
+- also, fix the saving of manually attached word docs and add a button to export to the toolbar
+- fix the issue with Cloning a clause where there was two concepts with the same name in Salesforce.
+
+*1.1.28*
+2 October 2015
+- fixes - problem with editing templates that had clauses where there was more than one instance of that name in Salesforce
+  the generic save code was setting the value in the dropdown by the name not the value which could cause issues with the dupes
+- make the concept on the clause edit in the sidebar readonly
+- speed - stop loading all the clauses each time the clause dialog is opened - refresh button will refresh otherwise only does it on an add
+- add sort and limit when looking for Template.docx attachments - this will make it behave correctly even if there are two attachments with same name
+
+*1.1.27*
+21 September 2015
+- Added Clean up button to the Template builder - sorts out orphans and dupes
+
+*1.1.26*
+14 September 2015
+- Problem with API - complext type has been added to the wsdl causing an error when it gets the layout description
+  added the type to the wsdl so we can stay on 29 without having to test everything else
+
+*1.1.25*
+14 September 2015
+- Issue wih the Import - introduced with the template clone - fix
+- On the Clone add in truncating of the names so we don't have save issues
+
+*1.1.24*
+8 September 2015
+- Issue with Client/Info playbook update - if you updated one it blanked the other - simple fix
+- Template Clone - allow cloning of templates either cloning all the concept clauses or just reusing.
+- Debug Panel in Template editor - Export/Import Playbook info - need for fix because of a cipher issue
+
+*1.1.23*
+23 August 2015
+Another bug in the Import - Templates can have orphan Elements - the delete of the clause must not delete out the elements (need to come back for that)
+For now get the import to do the clean up and NOT break to fix Blanche's issue
+
+*1.1.22*
+20 August 2015
+Bug in the Import if there are no Elements or no Clauses - add a bit of null detection!
+Add the instance you are logged into to the Import dialog
+
+*1.1.21*
+17 August 2015
+** Export/Import of Templates
+Blanche bug - not being able to see the Clockstopper you created in the task list - problem is the task veiw is pages so the 
+the created clockstopper can be on the next page *so* add a filter "Open Clockstopper" to the Activity view and change the filter
+selection after clockstopper to "Open Clockstopper" - this means that when you create a clockstopper you always get this filter
+either in the task object or in the Matter/Task view.  On the Task view this is sorted in createddate desc order so the new clockstopper
+will be on the page
+
+Brent bug - element formatting not possible, you couldn't set the format of an element in the template and then have that be reflected in the Contract
+fix invlovel changing the element in the template editor so you can edit it *and* on the clause when the values is replaced it remember the format
+of the control (other wise when you change the text in the range it wipes the formatting) ALSO have to copy the font and then reaplly it after the change
+
+
+*1.1.20*
+11 August 2015
+Set of changes!
+Compare Menu in Contract - does a word comparison between the current version and any new versions
+Allow Select None on a Concept - lets the user select None for a clause, always adds it at the end
+(requires AllowNone__c field on RibbonConcept)
+Default Element tie to Version/Matter/Request - if default value starts with a "=" and is in the form =Matter.Name then it will default to that value
+Default Clause tie to Version/Matter/Request - can set the clause to be the default option by setting DefaultSelection__c field to the field and value
+e.g. Matter.Name=Name123 - can have multiples by doing Matter.Name=Name123|Matter.Name=Name456
+(requires DefaultSelection__c field on RibbonTemplateClause)
+
+*1.1.19*
+5 August 2015
+Support the User object - doesn't have record types - just needed to adjust some of the code
+
+->Save As New Version
+->UnAttach
+->Export
+New Contract Sidebar with Clause choice and Data.  Big new set of editing, get rid of save as word and save as pdf - now assume we have a doc per version
+add buttons to create New Version either as a copy of the template OR as "unattached" OR from a new doc (this saves as unattached)
+Add Export to get the files out as copies
+
+
+*1.1.18*
+28 July 2015
+"Zoom" function for Related To lists - allows user to open the Relation Object by clicking on the label.  If we have the 
+definition of the object then it opens in a window, if not it opens the object in a webbrowser
+also add the Task query for UnAssigned QA tasks
+
+
+*1.1.17*
+23 July 2015
+Template formatting special!  fix the whole style problem - the code that inserts the clause into the control
+was removing the last style which I think is what was causing the issue - code was there to get rid of the extra
+\r that gets inserted when you insert text into the control.  change code to *just* get rid of that.  seems to work
+
+
+*1.1.16* (changed numbering - last dot will be for small revisions so notes will just be for first 3)
+22 July 2015
+arg! turns out API 29.0 gives the combination field details in the detail layout as well as the edit layout
+which I was exploiting to put all the fields in the layout even though it is based on the detail layout and not
+edit layout.  API 34.0 gives the correct detail layout so doesn't give the combination fields which is correct 
+but breaks what I want it to do!
+*for now* move back to using 29.0 TODO fix the layouts so that they work with 34.0 (need to look up the combination field in the edit layout I think)
+
+- bugs -
+  P038/P039 - Issues creating a new object if there was only a Master record type - put in fix, can now create
+  P007 - Blanche's reminder popup problem - cancel any new windows from the SSO login
+	
+ -Templates
+  - Issue with the Template Editor - one of the templates had some crazy characters in it and the clean up code that inserts
+  the clause xml into the control was getting confused cause range.characters.count <> range.end - always has before! so it was
+  trimming where it shouldn't! put in fix that removes by going to selection.end and removing the extra returns
+  - Inserting a Clause with a too long name - content controls can only have titles of 64 chars! woops - was throwing an error - update
+    to trim to 64 chars for the title for both concepts and elements - doens't do anything just for display so doesn't matter
+
+*1.1.0.15*
+21 July 2015
+- bugs -
+  P038 - decimals in grid, use the Sforce decimals definition to format the grid field
+  P036 - required fields, don't relly on SForce nillable, inforce the layout definitions which are actually diferent
+  Issue with Template initially created, the GetAllElements was failing cause it didn't generate the SQL correctly - fix up to return just the structure if there are no clauses
+  also in the ContractSideBare make sure that all data requests have handle data and change handledata to hide the progress window if there is an error
+
+
+*1.1.0.14*
+17 July 2015
+- Templates 
+  Update the New Clause so the selection is maximized to the start and end of the line, bit of logic if its already on the start or end of a line don't expand - this seems to fix the latest Rich Text error
+  On insert of a clause, get the sidebar to update the concept list - this should fix Ora's dancing concept clone problem
+
+
+*TODO*
+  Playbook editor - need to switch to Telerik Rad editor - issues with HTML/Flowdoc convertion and that should look after it - plus supports red line and spellcheck which might be usefull?
+  Template editor - default value - when you hit the concept it should select the current clause
+  *speed* - cache all the clauses, put unshown clauses as custom xml components
+
+
+*1.1.0.13*
+17 July 2015
+- change the filter to allow a default sort order with the OrderBy field on the Filters object entry
+- change the filter so default actually creates the drop sown filter objects and calls them My ObjectName instead of My Records - can also define them in setting without the SOQL with name "My" or "All"
+- add truncation to all the long text fields "Text__c" to 131,072 and add some other trunc values - need to change the saleforce save of the old way with the datasets to automatically truncate at one point!
+- add definable filters to the tabs - this lets us create filters for sub objects - add ones for the Tasks
+  as part of this add a return update from the button Apex class called Filter:{name} - this lets the apex code select the filter to select when it returns
+  (this lets the clockstopper button switch from the Auto view to the Manual view where the new CS is shown)
+- fix issue with the Matter Status isn't being selected on refresh - odd cb.Text = val isn't working - change it to loop through to selec
+  (think this is because we're creating the combobox items as strings rather than comboboxitem objects - might be better to fix that - having to do a fiar bit of (type==string) do this or (type=RadComboboxItem) do that
+- Add required indicator in the forms - bit tricky because it uses the detail layout to layout but the required is on the edit layout
+- Fix for the problem when changing owners and then changing something and reloading - problem with the AxSearchBox control - set was trigetting events
+- Update Partner API to 34.0 (I thought this might help with the Groups/Queues problem but it didn't!)
+- Hardcode fix for Groups/Queues - If the relatedto object for a search box is Queue then change it to Groups with a type of Queue
+
+
+*1.1.0.12*
+3 July 2015
+*Detail*
+- fix the picklist problem - wasn't filtering for RecordType - add that in using picklistsForRecordType - step through the entries
+  and remove any that aren't in the recordtype mapping list
+- picklist if there is a value in the field that isn't in the pick list then add to the list - sort of works! comeback to the save issue which may be dependency or this
+- fix issue with the breadcrumbs, filter change from 1.1.0.11 had broke it!
+- add support for fields that have multiple controls like name and address - change to have a wrapping stack panel - means don't need the autowidth code which is good
+  put the labels into a stackpanel as well if multiple - problem with the wrapping in the stack panel so only do if there are multiple - need to come back to
+- Select the Ribbon by default when editing a Ribbon doc
+- normal doc attachment - get it to open, close windows and activate the word doc
+- Template stuff - switch to Telerik controls - add In Template Clause editing and Clause cloning
+  Speed! mark each concept with the selected clause and last modified date - if they match don't load the clause get the xml from the template itself
+  switch template editor to use that.  Switch the Contract sidebar to do the same thing (this needs to be rewitten with telerik controls and a datatables to cache - but for now have done it a is
+  this will still be slow when there are a lot of clause choices because we have to get each clause that isn't the last selected one - could get round by caching the clause choices in the doc as 
+  a xml part)
+- playbook - add a playbook link to the template that maps to the salesforce field - add to contract so you can open the link from the contract creation
+  move the playbook editor to the template - add a button to extract the footnotes and add them to the text
+- settings changes - add order to the Task grid and add attachment to the matter
+- for the buttons if sforce returns the id then select the returned id (for clockstopper creation)
+- bugs - 
+	owner and task order don't show in the grid - cause they aren't on the page layout - change code to get all the field not jsut the ones on the page layouts
+	issues creating a new Task - the create was setting the values to null - no need on a create and it was causing proplems
+	error when saving contract - name too big!
+
+*1.1.0.11*
+30 June 2015
+*Detail*
+- fix for Demo issue - have to save templatedocument first before you can save as Word - force save
+- working on the template editor - switch the sidebar to Telerik controls and fix a bunch of bugs with editing 
+- Request from John Mallon - add definable filters - define in the Ribbon settings - todo get these settings from salesforce
+- fix bugs in the Grid view so we can show and search on relations 
+
+*1.1.0.10*
+23 June 2015
+*Detail*
+- Fix for demo versions to work, import negotation doesn't show dates as changes if there is no change 
+- fix in the CleanUpXML and another break using FirstChild instead of InnerText - had bugs in original fix in 1.1.0.9
+- force save when we export negotiation
+
+*1.1.0.9*
+18 June 2015
+*Detail*
+- Fix issue adding a clause section directly after a page break, insert now adds a new paragraph then the content control and then deletes the paragraph that was created
+- Save XML error, if the Word document contained the char ascii30 (&#x1E) then when the clause tried to save the text, it gave an error that "&#x1E" is an invalid XML character
+  fixed by adding a replace in CleanUpXML to change x1A-x1F to a regular "-" character - will only replace in the Text in salesforce, not the Attachment 
+- Added the "Admin Menu" and "Reports" to the ReportsSettings in Salesforce, this sets what profiles see the templates and the link to the reports

@@ -1,0 +1,299 @@
+﻿<UserControl x:Class="AxiomIRISRibbon.TemplateEdit.TEditSidebar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             d:DesignHeight="600" d:DesignWidth="300">
+
+    <UserControl.Resources>
+        <Style x:Key="LinkButton" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <TextBlock TextDecorations="Underline">
+                    <ContentPresenter />
+                        </TextBlock>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Foreground" Value="Blue" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="true">
+                    <Setter Property="Foreground" Value="Red" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    
+    <telerik:RadDocking x:Name="radDocking">
+        <telerik:RadDocking.DocumentHost>
+            <telerik:RadSplitContainer Name="split1" Orientation="Vertical">
+                <telerik:RadPaneGroup HorizontalAlignment="Stretch" >
+                    <telerik:RadDocumentPane Header="DocPane" Visibility="Collapsed" CanUserClose="False">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="239*"/>
+                                <ColumnDefinition Width="47*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="28" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+
+                            <telerik:RadToolBar Grid.Row="0"  Grid.Column="0" Name="tbObjectButtons" Width="Auto" Margin="0 0 0 0" Grid.ColumnSpan="2">
+                                <telerik:RadButton Name="btnCreateContract" Margin="3,0,3,0" Click="btnCreateContract_Click">Instance</telerik:RadButton>
+                                <telerik:RadButton Name="btnExport" Margin="3,0,3,0" Click="btnExport_Click">Export</telerik:RadButton>
+                                <telerik:RadButton Name="btnClone" Margin="3,0,3,0" Click="btnClone_Click">Clone</telerik:RadButton>
+                                <telerik:RadButton Visibility="Hidden" Margin="3,0,3,0">Import</telerik:RadButton>
+                                <telerik:RadToolBarSeparator />
+                                <telerik:RadButton BorderThickness="0" Height="22" Click="RadButton_Click" >
+                                    <Path Data="F1 M 24,13C 27.1521,13 29.9945,14.3258 32,16.4501L 32,11L 35,14L 35,22L 27,22L 24,19L 29.5903,19C 28.217,17.4656 26.2212,16.5 24,16.5C 20.1969,16.5 17.055,19.3306 16.5661,23L 13.0448,23C 13.5501,17.3935 18.262,13 24,13 Z M 24,31.5C 27.8031,31.5 30.945,28.6694 31.4339,25L 34.9552,25C 34.4499,30.6065 29.738,35 24,35C 20.8479,35 18.0055,33.6742 16,31.5499L 16,37L 13,34L 13,26L 21,26L 24,29L 18.4097,29C 19.783,30.5344 21.7787,31.5 24,31.5 Z" 
+											Fill="DarkGray"  Stretch="Fill" RenderTransformOrigin="0.5,0.5" 
+											  Width="12" Height="14" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="4 0" />
+                                </telerik:RadButton>
+                            </telerik:RadToolBar>
+
+                            <telerik:RadTreeView Name="Tree"  Grid.Row="1" Margin="5" IsLineEnabled="True" SelectionMode="Multiple" IsEditable="False" Background="White" Grid.ColumnSpan="2" SelectionChanged="Tree_SelectionChanged">
+                             
+
+                            </telerik:RadTreeView>
+                        </Grid>
+                    </telerik:RadDocumentPane>
+                </telerik:RadPaneGroup>
+
+            </telerik:RadSplitContainer>
+        </telerik:RadDocking.DocumentHost>
+        <telerik:RadSplitContainer Name="split2" InitialPosition="DockedBottom"  Orientation="Vertical" Height="300" MinHeight="200">
+                <telerik:RadPaneGroup HorizontalAlignment="Stretch" >
+                <telerik:RadPane PaneHeaderVisibility="Collapsed">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="40" />
+                        </Grid.RowDefinitions>
+                        <telerik:RadTabControl x:Name="tcEdit"  Grid.Row="0" BorderThickness="0" SelectedIndex="1" >
+                                <telerik:RadTabItem Header="Template" Name="tabItemTemplate" BorderThickness="0">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="32" />
+                                            <RowDefinition Height="*" />
+                                        </Grid.RowDefinitions>
+                                        <StackPanel Orientation="Horizontal" Grid.Row="0">
+                                            <telerik:RadButton Name="btnTClauseAdd" Height="23" Margin="5,0,0,0" Padding="10,0,10,0" Click="btnTClauseAdd_Click" >
+                                                Add Clause
+                                            </telerik:RadButton>
+
+                                            <telerik:RadButton Name="btnTClauseNew" Height="23" Margin="5,0,0,0" Padding="10,0,10,0" Click="btnTClauseNew_Click"  >
+                                                New Clause
+                                            </telerik:RadButton>
+
+                                        <telerik:RadButton Name="btnCleanUp" Height="23" Margin="5,0,0,0" Padding="10,0,10,0" Click="btnCleanUp_Click"   >
+                                            CleanUp
+                                        </telerik:RadButton>
+                                    </StackPanel>
+
+                                        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                                            <Grid Name="formGridTemplate">
+                                                <Label Content="Name:" Height="28" HorizontalAlignment="Left" Margin="12,6,0,0" Name="lblTemplateName" VerticalAlignment="Top"/>
+                                                <TextBox Height="23" Margin="90,6,10,0" Name="tbTemplateName" Tag="Name" VerticalAlignment="Top" HorizontalAlignment="Stretch" IsReadOnly="True" MaxLength="80" TextChanged="FormTextChanged" />
+                                                
+                                            <Label Content="Type:" Height="28" HorizontalAlignment="Left" Margin="12,33,0,0" Name="lblTemplateType" VerticalAlignment="Top" />
+                                            <telerik:RadComboBox Height="23" Margin="90,33,10,0" Name="cbTemplateType" Tag="Type__c" VerticalAlignment="Top"  HorizontalAlignment="Stretch" IsReadOnly="True" SelectionChanged="FormSelectionChanged"  />
+                                            
+                                            <Button Style="{StaticResource LinkButton}" Margin="17,66,10,0" Width="100" HorizontalAlignment="Left" Height="25" Content="Playbook:" ToolTip="Click to Open" VerticalAlignment="Top" Name="btnTemplatePlaybookLink" Click="btnTemplatePlaybookLink_Click"></Button>
+                                            <TextBox Height="23" Margin="90,64,10,0" Name="tbTemplatePlaybook" Tag="PlaybookLink__c" VerticalAlignment="Top" HorizontalAlignment="Stretch" IsReadOnly="True" MaxLength="255" TextChanged="FormTextChanged" />
+
+                                            <ScrollViewer Margin="4,90,10,0" Height="100" VerticalAlignment="Top">
+                                                    <TextBox VerticalContentAlignment="Top"  AcceptsReturn="True" Name="tbTemplateDescription" Tag="Description__c"  IsReadOnly="True" TextChanged="FormTextChanged" />
+                                                </ScrollViewer>
+                                            </Grid>
+                                        </ScrollViewer>
+                                    </Grid>
+                                </telerik:RadTabItem>
+
+                                <telerik:RadTabItem Header="Clause" Name="tabItemClause" BorderThickness="0,1,0,0">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="32" />
+                                            <RowDefinition Height="*" />
+                                        </Grid.RowDefinitions>
+                                        <StackPanel Orientation="Horizontal" Grid.Row="0">
+                                            <telerik:RadButton Name="btnElementAdd" Height="23" Margin="5,0,0,0" Padding="10,0,10,0" Click="btnElementAdd_Click" >
+                                                Add Element
+                                            </telerik:RadButton>
+
+
+                                        </StackPanel>
+
+                                        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                                            <Grid Name="formGridClause">
+
+                                                <Label Content="Name:" Height="28" HorizontalAlignment="Left" Margin="12,6,0,0" Name="lblClauseName" VerticalAlignment="Top"/>
+                                                <TextBox TextChanged="FormTextChanged" Height="23" Margin="90,6,10,0" Name="tbClauseName" Tag="Name" VerticalAlignment="Top"  IsReadOnly="True"  HorizontalAlignment="Stretch" MaxLength="80" />
+
+                                                <Label Content="Concept:" Height="28" HorizontalAlignment="Left" Margin="12,33,0,0" Name="lblConceptName" VerticalAlignment="Top" />
+                                                <telerik:RadComboBox SelectionChanged="FormSelectionChanged"  Height="23" Margin="90,33,10,0" Name="cbClauseConcept" Tag="Concept__r_Name|Concept__r_Id" VerticalAlignment="Top" IsEnabled="False"  HorizontalAlignment="Stretch"/>
+
+                                            <Label Content="Playbook:" Height="28" HorizontalAlignment="Left" Margin="12,63,0,0" Name="lblClausePlaybook" VerticalAlignment="Top" />
+                                            <Button Style="{StaticResource LinkButton}" Margin="95,63,10,0" Width="100" HorizontalAlignment="Left" Height="23" Content="Client" VerticalAlignment="Top" Name="btnClausePlaybookClient" Click="btnClausePlaybookClient_Click"></Button>
+                                            <Button Style="{StaticResource LinkButton}" Margin="140,63,10,0" Width="100" HorizontalAlignment="Left" Height="23" Content="Info" VerticalAlignment="Top" Name="btnClausePlaybookInfo" Click="btnClausePlaybookInfo_Click"></Button>
+                                            
+                                                <ScrollViewer Margin="4,90,10,0" Height="100" VerticalAlignment="Top">
+                                                    <TextBox TextChanged="FormTextChanged" VerticalContentAlignment="Top" AcceptsReturn="True" Name="tbClauseDescription" Tag="Description__c" IsReadOnly="True"  />
+                                                </ScrollViewer>
+
+                                            </Grid>
+                                        </ScrollViewer>
+                                    </Grid>
+                                </telerik:RadTabItem>
+
+                                <telerik:RadTabItem Header="Clause" Name="tabItemTClause" BorderThickness="0,1,0,0">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="32" />
+                                            <RowDefinition Height="*" />
+                                        </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="34" />
+                                    </Grid.ColumnDefinitions>
+                                        <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0">
+                                            <telerik:RadButton Name="btnTClauseEdit" Height="23" Margin="5,0,0,0" Padding="10,0,10,0" Click="btnTClauseEdit_Click" >
+                                                Edit
+                                            </telerik:RadButton>
+                                            <telerik:RadButton Name="btnTClauseDelete" Height="23" Margin="5,0,0,0" Padding="10,0,10,0" Click="btnTClauseDelete_Click" >
+                                                Delete
+                                            </telerik:RadButton>
+                                        <telerik:RadButton Name="btnTClauseClone" Height="23" Margin="5,0,0,0" Padding="10,0,10,0" Click="btnTClauseClone_Click" >
+                                            Clone
+                                        </telerik:RadButton>
+                                        <telerik:RadButton Name="btnTClauseLock" Height="23" Margin="5,0,0,0" Padding="5,0,5,0" Click="btnTClauseLock_Click" >
+                                            <Image Name="imgLock" Stretch="None" Source="/AxiomIRISRibbon;component/Resources/locksmall.png" />
+                                        </telerik:RadButton>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1">
+                                        <telerik:RadButton Name="btnTClauseReload" Grid.Column="1" HorizontalAlignment="Right" Height="23" Margin="5,0,0,0" Padding="5,0,5,0" ToolTip="Reload Clause from Salesforce" Click="btnTClauseReload_Click">
+                                            <Path Data="F1 M 24,13C 27.1521,13 29.9945,14.3258 32,16.4501L 32,11L 35,14L 35,22L 27,22L 24,19L 29.5903,19C 28.217,17.4656 26.2212,16.5 24,16.5C 20.1969,16.5 17.055,19.3306 16.5661,23L 13.0448,23C 13.5501,17.3935 18.262,13 24,13 Z M 24,31.5C 27.8031,31.5 30.945,28.6694 31.4339,25L 34.9552,25C 34.4499,30.6065 29.738,35 24,35C 20.8479,35 18.0055,33.6742 16,31.5499L 16,37L 13,34L 13,26L 21,26L 24,29L 18.4097,29C 19.783,30.5344 21.7787,31.5 24,31.5 Z" 
+											Fill="DarkGray"  Stretch="Fill" RenderTransformOrigin="0.5,0.5" 
+											  Width="12" Height="14" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="2 0" />
+                                        </telerik:RadButton>
+                                    </StackPanel>
+
+                                        <ScrollViewer Grid.Row="1" Grid.ColumnSpan="2" VerticalScrollBarVisibility="Auto">
+                                            <Grid Name="formGridTClause">
+
+                                                <Label Content="Name:" Height="28" HorizontalAlignment="Left" Margin="12,6,0,0" Name="lblTClauseName" VerticalAlignment="Top"/>
+                                                <TextBox TextChanged="FormTextChanged" Height="23" Margin="90,6,10,0" Name="tbTClauseName" Tag="Clause__r_Name" VerticalAlignment="Top" HorizontalAlignment="Stretch" IsReadOnly="True"  MaxLength="80"  />
+
+                                                <Label Content="Concept:" Height="28" HorizontalAlignment="Left" Margin="12,33,0,0" Name="lblTConceptName" VerticalAlignment="Top" />
+                                            <TextBox Height="23" Margin="90,33,10,0" Name="tbTClauseConcept" Tag="Clause__r_Concept__r_Name|Readonly" VerticalAlignment="Top" HorizontalAlignment="Stretch" IsReadOnly="True" MaxLength="80" />
+                                            <!-- <telerik:RadComboBox SelectionChanged="FormSelectionChanged"  Height="23" Margin="90,33,10,0" Name="cbTClauseConcept" Tag="Clause__r_Concept__r_Name|Clause__r_Concept__r_Id" VerticalAlignment="Top" HorizontalAlignment="Stretch" IsReadOnly="True" />-->
+
+                                            <Label Content="Order:" Height="28" HorizontalAlignment="Left" Margin="12,60,0,0" Name="lblClauseOrder" VerticalAlignment="Top" />
+                                            <TextBox TextChanged="FormTextChanged" Height="23" Margin="90,60,10,0" Name="tbClauseOrder" Tag="Order__c" VerticalAlignment="Top" HorizontalAlignment="Stretch" IsReadOnly="True"  />
+
+                                            <Label Content="Default If:" Height="28" HorizontalAlignment="Left" Margin="12,87,0,0" Name="lblClauseDefault" VerticalAlignment="Top" />
+                                            <TextBox TextChanged="FormTextChanged" Height="23" Margin="90,87,10,0" Name="tbClauseDefault" Tag="DefaultSelection__c" VerticalAlignment="Top" HorizontalAlignment="Stretch" IsReadOnly="True"  />
+                                                
+                                            <CheckBox Height="20" Name="cbAllowNone" Tag="Clause__r_Concept__r_AllowNone__c" IsEnabled="False" Margin="92,-10,10,0" Click="FormCheckBoxClick">Allow "None" Selection</CheckBox>
+
+                                            <Label Content="Playbook:" Height="28" HorizontalAlignment="Left" Margin="12,132,0,0" Name="lblPlaybook" VerticalAlignment="Top" />
+                                            <Button Style="{StaticResource LinkButton}" Margin="95,135,10,0" Width="100" HorizontalAlignment="Left" Height="23" Content="Client" VerticalAlignment="Top" Name="btnPlaybookClient" Click="btnPlaybookClient_Click"></Button>
+                                            <Button Style="{StaticResource LinkButton}" Margin="140,135,10,0" Width="100" HorizontalAlignment="Left" Height="23" Content="Info" VerticalAlignment="Top" Name="btnPlaybookInfo" Click="btnPlaybookInfo_Click"></Button>
+
+                                            <ScrollViewer Margin="4,160,10,0" Height="100" VerticalAlignment="Top">
+                                                <TextBox TextChanged="FormTextChanged" VerticalContentAlignment="Top" AcceptsReturn="True" Name="tbTClauseDescription" Tag="Clause__r_Description__c"/>
+                                            </ScrollViewer>
+
+                                        </Grid>
+                                        </ScrollViewer>
+                                    </Grid>
+                                </telerik:RadTabItem>
+
+                                <telerik:RadTabItem Header="Element" Name="tabItemElement" BorderThickness="0,1,0,0">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="32" />
+                                            <RowDefinition Height="*" />
+                                        </Grid.RowDefinitions>
+                                        <StackPanel Orientation="Horizontal" Grid.Row="0">
+                                            <telerik:RadButton Name="btnElementEdit" Height="23" Margin="5,0,0,0" Padding="10,0,10,0" Click="btnElementEdit_Click" >
+                                                Edit Element
+                                            </telerik:RadButton>
+                                            <telerik:RadButton Name="btnElementDelete" Height="23" Margin="5,0,0,0" Padding="10,0,10,0" Click="btnElementDelete_Click" >
+                                                Delete Element
+                                            </telerik:RadButton>
+
+                                        </StackPanel>
+
+                                        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                                            <Grid Name="formGridElement">
+
+                                                <Label Content="Name:" Height="28" HorizontalAlignment="Left" Margin="12,6,0,0" Name="lblElementName" VerticalAlignment="Top"/>
+                                                <TextBox TextChanged="FormTextChanged" Height="23" Margin="96,6,10,0" Name="tbElementName" Tag="Element__r_Name" VerticalAlignment="Top" HorizontalAlignment="Stretch" IsReadOnly="True" MaxLength="80"  />
+
+                                                <Label Content="Type:" Height="28" HorizontalAlignment="Left" Margin="12,33,0,0" Name="lblElementType" VerticalAlignment="Top" />
+                                                <telerik:RadComboBox SelectionChanged="FormSelectionChanged"  Height="23" Margin="96,33,10,0" Name="cbElementType" Tag="Element__r_Type__c" VerticalAlignment="Top" IsEnabled="False" HorizontalAlignment="Stretch"  />
+
+                                                <Label Content="Order:" Height="28" HorizontalAlignment="Left" Margin="12,60,0,0" Name="lblElementOrder" VerticalAlignment="Top" />
+                                                <TextBox TextChanged="FormTextChanged" Height="23" Margin="96,60,10,0" Name="tbElementOrder" Tag="Order__c" VerticalAlignment="Top" HorizontalAlignment="Stretch" IsReadOnly="True" MaxLength="10"/>
+
+                                                <Label Content="Default:" Height="28" HorizontalAlignment="Left" Margin="12,87,0,0" Name="lblElementDefault" VerticalAlignment="Top" />
+                                                <TextBox TextChanged="FormTextChanged" Height="23" Margin="96,87,10,0" Name="tbElementDefault" Tag="Element__r_DefaultValue__c" VerticalAlignment="Top" HorizontalAlignment="Stretch" IsReadOnly="True"  MaxLength="255"/>
+
+                                                <Label Content="Format:" Height="28" HorizontalAlignment="Left" Margin="12,114,0,0" Name="lblElementFormat" VerticalAlignment="Top" />
+                                                <TextBox TextChanged="FormTextChanged" Height="23" Margin="96,114,10,0" Name="tbElementFormat" Tag="Element__r_Format__c" VerticalAlignment="Top" HorizontalAlignment="Stretch" IsReadOnly="True"  MaxLength="255"/>
+
+                                                <ScrollViewer Margin="4,141,10,0" Height="100" VerticalAlignment="Top" >
+                                                    <TextBox TextChanged="FormTextChanged" VerticalContentAlignment="Top" AcceptsReturn="True" Name="tbElementDescription" Tag="Element__r_Description__c" IsReadOnly="True" />
+                                                </ScrollViewer>
+
+                                            </Grid>
+                                        </ScrollViewer>
+                                    </Grid>
+                                </telerik:RadTabItem>
+
+
+                            <telerik:RadTabItem Header="Debug" Name="tabDebug" BorderThickness="0,1,0,0">
+                                <Grid>
+                                    <Label Margin="15,15,5,5">BE CAREFULL! This can mess up the templates</Label>
+                                    <telerik:RadButton Name="btnDebug1" VerticalAlignment="Top" HorizontalAlignment="Left" BorderThickness="0" Height="22" Width="100" Margin="35,45,5,5" Click="btnDebug1_Click">Unlock Clauses</telerik:RadButton>
+                                    <telerik:RadButton Name="btnDebug2" VerticalAlignment="Top" HorizontalAlignment="Left"  BorderThickness="0" Height="22" Width="100" Margin="35,75,5,5" Click="btnDebug2_Click">Lock Clauses</telerik:RadButton>
+
+                                    <Label Margin="15,135,5,5">ClauseId:</Label>
+                                    <TextBox Height="23" Margin="85,75,5,5" Name="tbDebugClauseId" IsReadOnly="true"></TextBox>
+                                    <Label Margin="15,165,5,5">ConceptId:</Label>
+                                    <TextBox Height="23" Margin="85,135,5,5" Name="tbDebugConceptId" IsReadOnly="true"></TextBox>
+
+                                    <!--
+                                    <Label Margin="15,100,5,5">One Off to fix Cipher issue with Playbook</Label>
+                                    <telerik:RadButton Name="btnDebug3" VerticalAlignment="Top" HorizontalAlignment="Left"  BorderThickness="0" Height="22" Width="100" Margin="35,125,5,5" Click="btnDebug3_Click">Export Playbook</telerik:RadButton>
+                                    <telerik:RadButton Name="btnDebug4" VerticalAlignment="Top" HorizontalAlignment="Left"  BorderThickness="0" Height="22" Width="100" Margin="35,155,5,5" Click="btnDebug4_Click">Import Playbook</telerik:RadButton>
+                                    -->
+                                    
+                                </Grid>
+                            </telerik:RadTabItem>
+
+
+                        </telerik:RadTabControl>
+                        
+
+
+                       
+
+                        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+                            <telerik:RadButton Name="btnSave" BorderThickness="0" Height="22" Width="70" Margin="5,5,5,5" Click="btnSave_Click"  >Save</telerik:RadButton>
+                            <telerik:RadButton BorderThickness="0" Content="Cancel" Height="22" Width="70" Margin="5,5,5,5" Name="btnCancel" Click="btnCancel_Click"  />
+                        </StackPanel>
+                    </Grid>
+                </telerik:RadPane>
+            </telerik:RadPaneGroup>
+            </telerik:RadSplitContainer>
+        
+    </telerik:RadDocking>
+
+</UserControl>

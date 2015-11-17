@@ -1,0 +1,68 @@
+﻿<UserControl x:Class="AxiomIRISRibbon.SForceEdit.AxAttachment"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="800" IsVisibleChanged="UserControl_IsVisibleChanged">
+    <Grid>
+        <telerik:RadBusyIndicator Grid.Row="1" IsIndeterminate="True" BusyContent="Loading ..." Name="bsyInd">
+            
+
+                <Grid Margin="3 0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Name="searchbarrow"  Height="Auto" />
+                        <RowDefinition />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="120"/>
+                    </Grid.ColumnDefinitions>
+
+
+
+                    <StackPanel Name="searchbar1" Grid.Column="0" Orientation="Horizontal" Height="28" Margin="2 -1 0 0" VerticalAlignment="Center">
+
+                        <telerik:RadButton BorderThickness="0" Height="22" Click="RadButton_Click">
+                            <Path Data="F1 M 24,13C 27.1521,13 29.9945,14.3258 32,16.4501L 32,11L 35,14L 35,22L 27,22L 24,19L 29.5903,19C 28.217,17.4656 26.2212,16.5 24,16.5C 20.1969,16.5 17.055,19.3306 16.5661,23L 13.0448,23C 13.5501,17.3935 18.262,13 24,13 Z M 24,31.5C 27.8031,31.5 30.945,28.6694 31.4339,25L 34.9552,25C 34.4499,30.6065 29.738,35 24,35C 20.8479,35 18.0055,33.6742 16,31.5499L 16,37L 13,34L 13,26L 21,26L 24,29L 18.4097,29C 19.783,30.5344 21.7787,31.5 24,31.5 Z" 
+											Fill="DarkGray"  Stretch="Fill" RenderTransformOrigin="0.5,0.5" 
+											  Width="12" Height="14" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="4 0" />
+                        </telerik:RadButton>
+
+                        <telerik:RadToolBarSeparator />
+                        <telerik:RadButton Name="SFButton" BorderThickness="0" Height="22" Margin="3,0,3,0" Click="SFButton_Click">
+                            <Image HorizontalAlignment="Left" Margin="0,0,0,0" Name="image1" Stretch="None"  VerticalAlignment="Top"  Source="/AxiomIRISRibbon;component/Resources/sf.ico"/>
+                        </telerik:RadButton>
+
+                        <telerik:RadButton Name="New" BorderThickness="0" Height="22" Margin="3,0,3,0">
+                            New
+                        </telerik:RadButton>
+
+                        <telerik:RadButton Name="Add" BorderThickness="0" Height="22" Margin="3,0,3,0" Click="Add_Click">
+                            Add
+                        </telerik:RadButton>
+
+                        <telerik:RadButton Name="Del" BorderThickness="0" Height="22" Margin="3,0,3,0" Click="Del_Click">
+                            Del
+                        </telerik:RadButton>
+
+                        <telerik:RadButton Name="Edit" BorderThickness="0" Height="22" Margin="3,0,3,0" Click="Edit_Click">
+                            Edit
+                        </telerik:RadButton>
+
+
+                        <telerik:RadToolBarSeparator/>
+
+
+                    </StackPanel>
+
+
+
+                    <telerik:RadGridView Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Name="radGridView1"  Height="Auto" Width="Auto" IsFilteringAllowed="False" IsReadOnly="True" ShowGroupPanel="False" SelectionChanged="radGridView1_SelectionChanged" AllowDrop="False"  MouseDoubleClick="radGridView1_MouseDoubleClick" />
+
+                </Grid>
+        </telerik:RadBusyIndicator>
+    </Grid>
+</UserControl>

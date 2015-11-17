@@ -1,0 +1,5 @@
+partner31.wsdl is the original partner 31 version
+
+partner.wsdl - I've added a type to this from the 35 version - having an issue with the Winter2016 releases
+breaking the /31.0/ API so it doesn't match the WSDL
+

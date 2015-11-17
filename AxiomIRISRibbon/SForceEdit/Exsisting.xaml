@@ -1,0 +1,45 @@
+﻿<telerik:RadWindow x:Class="AxiomIRISRibbon.SForceEdit.Exsisting"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Header="Axiom IRIS" Name="windowNewFromTemplate" Height="380" Width="739" >
+
+    <telerik:RadBusyIndicator Grid.Row="1"  BusyContent="Cloning ..." Name="bsyIndc">
+        <Grid Margin="0,0,0,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="267*" />
+            <RowDefinition Height="50*" />
+        </Grid.RowDefinitions>
+        <Label Content="Agreement Number:"  Height="28" HorizontalAlignment="Left" Margin="5,10,0,0" VerticalAlignment="Top" />
+        <TextBox Height="23" Margin="128,10,516,0" Name="AgreemntNumber" VerticalAlignment="Top"  MaxLength="80"/>
+        <Label Content="CNID:" Height="28" HorizontalAlignment="Left" Margin="254,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.463,0.5" />
+        <TextBox Height="23" Margin="300,10,324,0" Name="CNID" VerticalAlignment="Top" Width="95"  MaxLength="80" RenderTransformOrigin="0.5,0.5"/>
+        <Button HorizontalAlignment="Left" Content="Search" Margin="558,10,0,0" Width="75"  Height="23" VerticalAlignment="Top" Name="btnSearch" Click="btnSearch_Click" ></Button>
+        <Button HorizontalAlignment="Left" Content="Reset" Margin="644,10,0,0" Width="75"  Height="23" VerticalAlignment="Top" Name="btnReset" Click="btnReset_Click" >
+        </Button>
+       
+
+        <DataGrid Margin="5,40,5,5" Name="dgTemplates" HorizontalGridLinesBrush="Silver" VerticalGridLinesBrush="Silver" AutoGenerateColumns="false" IsReadOnly="True"  SelectionMode="Single" AllowDrop="False"  VerticalAlignment="Stretch" >
+            <DataGrid.RowStyle>
+                <Style TargetType="{x:Type DataGridRow}">
+                    <EventSetter Event="MouseDoubleClick" Handler="ClauseRowDoubleClick"/>
+                </Style>
+            </DataGrid.RowStyle>
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Path=Id}" Header="Matter Id" Width="*" IsReadOnly="True" Visibility="Hidden" />
+                <DataGridTextColumn Binding="{Binding Path=Name}" Header="Matter Name" Width="*" IsReadOnly="True" />
+                <DataGridTextColumn Binding="{Binding Path=Counterparty__c}" Header="CounterParty" Width="*" IsReadOnly="True" />
+                <DataGridTextColumn Binding="{Binding Path=Credit_Suisse_Entity__c}" Header="Credit Suisse Entity" Width="*" IsReadOnly="True" />
+                <DataGridTextColumn Binding="{Binding Path=Agreement_Number__c}" Header="Agreement Number" Width="*" IsReadOnly="True" />
+                <DataGridTextColumn Binding="{Binding Path=CNID__c}" Header="CNID" Width="*" IsReadOnly="True" />
+            </DataGrid.Columns>
+        </DataGrid>
+       
+        <Button Content="Clone" Height="23" HorizontalAlignment="Right" Margin="0,7,86,0" Name="btnclone" VerticalAlignment="Top" Width="75" Grid.Column="1" Grid.Row="1" Click="btnClone_Click" />
+        <Button Content="Cancel" Height="23" HorizontalAlignment="Right" Margin="0,7,5,0" Name="btnCancel" VerticalAlignment="Top" Width="75" Grid.Column="1" Grid.Row="1" Click="btnCancel_Click" />
+    </Grid>
+    </telerik:RadBusyIndicator>
+</telerik:RadWindow>
